@@ -27,11 +27,14 @@ public class Main {
     private static void makeArticleListCsv(int intYear, int intMonth) throws IOException, InterruptedException, ParseException{
 
         String month = String.format("%02d" , intMonth);
+        String forwardSlash = "/";
         String year = String.valueOf(intYear);
-        int page = 0;
         String urlMain = "http://news.mynavi.jp/list/headline/" + intYear + "/" + month + "/?page=";
-        String siteName = "http://" + urlMain.split("/")[2];
+        String siteName = "http://" + urlMain.split(forwardSlash)[2];
         String ELEMENT_CLASS = "thumb-s__item";
+
+        int waitTime = 1000;
+        int page = 0;
 
         List<Article> articles = new ArrayList<>();
 
@@ -50,9 +53,8 @@ public class Main {
                     articles.add(newArticle);
                 }
             }
-            Thread.sleep(1000);
+            Thread.sleep(waitTime);
         }
-        //Collections.sort(articles); //List.sort()を利用してくださいと書かれてますが、static
         Comparator<Article> c = (Article a1, Article a2) -> a1.compareTo(a2);
         articles.sort(c);
 

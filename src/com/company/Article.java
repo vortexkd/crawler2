@@ -4,7 +4,6 @@ import org.jsoup.nodes.Element;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 
 public final class Article implements Comparable<Article>{
